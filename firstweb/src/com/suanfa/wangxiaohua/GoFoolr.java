@@ -29,11 +29,11 @@ public class GoFoolr {
     public static void main(String[] args) {
 //10946
         GoFoolr g = new GoFoolr();
-
-        long l1 = new Date().getTime();
+/*        long l1 = new Date().getTime();
         System.out.println(g.getNum(new BigInteger("1000")));
         long l2 = new Date().getTime();
-        System.out.println("共用时："+(l2-l1)+"毫秒");
+        System.out.println("共用时："+(l2-l1)+"毫秒");*/
+        System.out.println(g.dp(20));
     }
 
     void init(BigInteger n){
@@ -71,5 +71,17 @@ public class GoFoolr {
         }
     }
 
+    //直接这样
+    int dp(int n){
+        int[] m = new int[n+1];
+        m[1] = 1;
+        m[2] = 2;
+
+        for(int i = 3; i <= n; i++){
+            m[i] = m[i-1] + m[i-2];
+        }
+
+        return m[n];
+    }
 
 }
