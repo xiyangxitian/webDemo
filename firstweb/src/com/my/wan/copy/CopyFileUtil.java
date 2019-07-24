@@ -30,7 +30,7 @@ public class CopyFileUtil {
      * @param srcPath
      * @param destPath
      */
-    static void copy(File srcFile, File destFile, String srcPath, String destPath) {
+    private static void copy(File srcFile, File destFile, String srcPath, String destPath) {
         if (srcFile.isDirectory()) {
             File fileSrc = new File(srcFile.getAbsolutePath().replace(srcPath, destPath));
             if (!fileSrc.exists()) {
@@ -50,7 +50,7 @@ public class CopyFileUtil {
     /**
      * 复制一个文件到指定文件夹
      */
-    static void copyFileToDir(File file, String destPath) {
+    private static void copyFileToDir(File file, String destPath) {
         FileInputStream fis = null;
         FileOutputStream fos = null;
 
