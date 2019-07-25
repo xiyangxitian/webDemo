@@ -11,8 +11,9 @@ public class CopyFileUtil {
 
     public static void main(String[] args) {
         String a = "D:\\360安全浏览器下载\\jetbrains最新破解补丁和激活码";
+        a = "C:\\Users\\ly\\Pictures\\1.jpg";
         String b = "E:\\java";
-        copyDirToDir(a, b);
+        copyFile2Dir(new File(a), b);
     }
 
     public static void copyDirToDir(String srcPath, String destPath) {
@@ -53,10 +54,44 @@ public class CopyFileUtil {
     private static void copyFileToDir(File file, String destPath) {
         FileInputStream fis = null;
         FileOutputStream fos = null;
-
         try {
             fis = new FileInputStream(file);
             fos = new FileOutputStream(destPath);
+            int len;
+            byte[] buf = new byte[1024];
+            while ((len = fis.read(buf)) != -1) {
+                fos.write(buf, 0, len);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+
+    /**
+     * 复制一个文件到指定文件夹
+     */
+    public static void copyFile2Dir(File file, String destPath) {
+        FileInputStream fis = null;
+        FileOutputStream fos = null;
+        try {
+            fis = new FileInputStream(file);
+            fos = new FileOutputStream(destPath + "\\" + file.getName());
             int len;
             byte[] buf = new byte[1024];
             while ((len = fis.read(buf)) != -1) {
